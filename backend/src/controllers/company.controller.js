@@ -70,11 +70,17 @@ exports.getCompanyById = async (req, res) => {
 exports.getAllCompanies = async (req, res) => {
     try {
         const query = `
-            SELECT c.*, 
-            json_agg(s.*) AS shareholders
+            SELECT 
+                c.*, 
+                COUNT(s.id) AS actual_shareholder_count,
+                CASE 
+                    WHEN COUNT(s.id) > 0 THEN 'completed' 
+                    ELSE 'draft' 
+                END as status_flag
             FROM companies c
             LEFT JOIN shareholders s ON c.id = s.company_id
             GROUP BY c.id
+            ORDER BY c.created_at DESC
         `;
         const result = await db.query(query);
         res.json(result.rows);

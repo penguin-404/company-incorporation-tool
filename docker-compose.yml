@@ -28,15 +28,15 @@ services:
       - db
 
   #Frontend
-#  frontend:
-#    build: ./frontend
-#    container_name: incorporation_ui
-#    ports:
-#      - "5173:5173"
-#    environment:
-#      - VITE_API_URL=http://localhost:5000
-#    depends_on:
-#      - backend
+  frontend:
+    build: ./frontend
+    container_name: incorporation_ui
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:5000
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:
