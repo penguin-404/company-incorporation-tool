@@ -43,6 +43,29 @@ exports.addShareholders = async (req, res) => {
     }
 };
 
+// Fetch a single company
+exports.getCompanyById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await db.query(
+            `SELECT c.*, 
+             COALESCE(json_agg(s.*) FILTER (WHERE s.id IS NOT NULL), '[]') AS shareholders
+             FROM companies c
+             LEFT JOIN shareholders s ON c.id = s.company_id
+             WHERE c.id = $1
+             GROUP BY c.id`,
+            [id]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Company not found" });
+        }
+        res.json(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
 //Get all companies with their shareholders
 exports.getAllCompanies = async (req, res) => {
     try {
