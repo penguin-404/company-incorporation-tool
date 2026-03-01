@@ -14,3 +14,6 @@ CREATE TABLE IF NOT EXISTS shareholders (
     last_name VARCHAR(100) NOT NULL,
     nationality VARCHAR(100) NOT NULL
 );
+
+
+CREATE INDEX idx_shareholders_company_id ON shareholders(company_id);
