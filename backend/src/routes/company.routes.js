@@ -3,16 +3,25 @@ const router = express.Router();
 const companyController = require('../controllers/company.controller');
 const { validateCompany, validateShareholders } = require('../middleware/validate');
 
-//Create Company
-router.post('/', validateCompany, companyController.createCompany);
+router.post('/', validateCompany, companyController.saveCompany);
+
+//Update Company
+router.put('/:id', validateCompany, companyController.saveCompany);
+
+//Delete Company 
+router.delete('/:id', companyController.deleteCompany);
 
 //Add Shareholders
-router.post('/:companyId/shareholders', validateShareholders, companyController.addShareholders);
+router.post('/:id/shareholders', validateShareholders, companyController.addShareholders);
 
-//Get specific company with its shareholders
+//Get company with shareholders
+router.get('/:id/details', companyController.getCompanyDetails);
+
+//Get Specific Company
 router.get('/:id', companyController.getCompanyById);
 
-//Get all
+//Get All Companies
 router.get('/', companyController.getAllCompanies);
+
 
 module.exports = router;
