@@ -13,7 +13,7 @@ const ShareholderForm = ({ onFinish, count, onBack }) => {
   };
 
   return (
-    <div className="w-full max-w-6xl bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden border border-white flex flex-col md:flex-row animate-in slide-in-from-right-10 duration-500">
+    <div className="w-full max-w-4xl bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden border border-white flex flex-col md:flex-row animate-in slide-in-from-right-10 duration-500">
       
       {/* Sidebar */}
       <div className="md:w-1/3 bg-slate-900 p-8 md:p-12 text-white flex flex-col justify-between">
@@ -37,7 +37,7 @@ const ShareholderForm = ({ onFinish, count, onBack }) => {
       <form onSubmit={(e) => { e.preventDefault(); onFinish(shareholders); }} className="md:w-2/3 p-8 md:p-12 flex flex-col">
         <div className="flex-1 overflow-y-auto max-h-[55vh] pr-4 custom-scrollbar space-y-6">
           {shareholders.map((s, i) => (
-            <div key={i} className="p-8 bg-slate-50/50 border border-slate-100 rounded-4xl relative group">
+            <div key={i} className="p-8 bg-slate-50/50 border border-slate-100 rounded-3xl relative group">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-orange-600 font-black text-sm border border-slate-100">
                   {i + 1}
